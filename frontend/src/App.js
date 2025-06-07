@@ -1,13 +1,11 @@
 import React from 'react';
-import SignPlayer from './components/SignPlayer';
-import './App.css'; // Puedes añadir estilos globales aquí si quieres
+import SignLanguageApp from './components/SignLanguageApp';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <SignPlayer />
-      </header>
+      <SignLanguageApp />
     </div>
   );
 }

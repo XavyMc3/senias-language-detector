@@ -2,6 +2,9 @@ import cv2
 import mediapipe as mp
 import numpy as np
 
+mp_drawing = mp.solutions.drawing_utils
+mp_styles  = mp.solutions.drawing_styles
+
 def distancia_euclidiana(p1, p2):
     return ((p2[0] - p1[0]) ** 2 + (p2[1] - p1[1]) ** 2) ** 0.5
 
@@ -20,6 +23,16 @@ class SignLanguageDetector:
         results = self.hands.process(image)
 
         if results.multi_hand_landmarks:
+            for hand_landmarks in results.multi_hand_landmarks:
+                # Ahora con estilo multicolor "Google" predeterminado
+                mp_drawing.draw_landmarks(
+                    frame,
+                    hand_landmarks,
+                    self.mp_hands.HAND_CONNECTIONS,
+                    mp_styles.get_default_hand_landmarks_style(),
+                    mp_styles.get_default_hand_connections_style()
+                )
+
             hand_landmarks = results.multi_hand_landmarks[0]
             height, width, _ = frame.shape
 
@@ -37,7 +50,6 @@ class SignLanguageDetector:
             pinky_pip = (int(hand_landmarks.landmark[18].x * width), int(hand_landmarks.landmark[18].y * height))
             wrist = (int(hand_landmarks.landmark[0].x * width), int(hand_landmarks.landmark[0].y * height))
 
-
             # Lógica de detección de letras
             # Letra A
             if abs(thumb_tip[1] - index_finger_pip[1]) < 45 and \
@@ -45,6 +57,7 @@ class SignLanguageDetector:
                abs(thumb_tip[1] - ring_finger_pip[1]) < 30 and \
                abs(thumb_tip[1] - pinky_pip[1]) < 30:
                 return 'A'
+
 
             # Letra B
             elif index_finger_pip[1] > index_finger_tip[1] and \
