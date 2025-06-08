@@ -3,7 +3,7 @@ from flask_cors import CORS
 from sign_detector import SignLanguageDetector
 import cv2
 import numpy as np
-
+import os
 app = Flask(__name__)
 CORS(app)  # Permite peticiones desde el frontend
 detector = SignLanguageDetector()
@@ -26,6 +26,7 @@ def detect_sign():
         return jsonify({'letter': letter})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
+    
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
