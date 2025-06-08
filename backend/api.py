@@ -22,7 +22,7 @@ def detect_sign():
     
     # Procesar detección
     try:
-        letter = detector.detect_letter(frame)
+        letter, _ = detector.detect_letter(frame) 
         return jsonify({'letter': letter})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
