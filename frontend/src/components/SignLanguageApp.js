@@ -41,7 +41,7 @@ const SignLanguageApp = () => {
     setFeedback('');
     setDetectedLetter('');
   };
-
+  // efecto estetitico
   const captureAndDetect = useCallback(async () => {
     if (!webcamRef.current) return;
 
@@ -52,13 +52,13 @@ const SignLanguageApp = () => {
       // Convertir base64 a blob
       const response = await fetch(imageSrc);
       const blob = await response.blob();
-      
+
       // Crear FormData para enviar al backend
       const formData = new FormData();
       formData.append('image', blob, 'capture.jpg');
 
       // Enviar al backend
-      const result = await axios.post('http://localhost:5000/detect', formData, {
+      const result = await axios.post('https://senias-language-detector.onrender.com/detect', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -74,6 +74,7 @@ const SignLanguageApp = () => {
       setFeedback('Error al detectar la seña. Verifica que el backend esté funcionando.');
     }
   }, [currentChallenge, userInput]);
+  // fin de efecto estetitico
 
   const handleLetterDetected = (letter) => {
     const nextExpectedLetter = currentChallenge[userInput.length];
