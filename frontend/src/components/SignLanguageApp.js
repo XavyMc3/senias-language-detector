@@ -58,7 +58,8 @@ const SignLanguageApp = () => {
       formData.append('image', blob, 'capture.jpg');
 
       // Enviar al backend
-      const result = await axios.post('http://localhost:5000/detect', formData, {
+      const result = await axios.post('https://senias-language-detector.onrender.com/detect', formData, {
+
         headers: {
           'Content-Type': 'multipart/form-data'
         }
