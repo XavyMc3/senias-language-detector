@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/senias-language-detector/static/css/main.84a95d48.css",
+    "main.js": "/senias-language-detector/static/js/main.bb97b674.js",
+    "index.html": "/senias-language-detector/index.html",
+    "main.84a95d48.css.map": "/senias-language-detector/static/css/main.84a95d48.css.map",
+    "main.bb97b674.js.map": "/senias-language-detector/static/js/main.bb97b674.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84a95d48.css",
+    "static/js/main.bb97b674.js"
+  ]
+}
